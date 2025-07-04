@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Vendor Claim Management Platform - </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-info {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .tech-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-content {
+            padding: 3rem 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border: 2px solid #667eea;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tech-category {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .tech-category h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .tech-list {
+            list-style: none;
+        }
+
+        .tech-list li {
+            background: rgba(255, 255, 255, 0.7);
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .pricing-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .pricing-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 3rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 2rem 0;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            margin: 0 2.5%;
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            left: -30px;
+            border-right-color: white;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: -30px;
+            border-left-color: white;
+        }
+
+        .timeline-marker {
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            border: 4px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .table td {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .table tr:hover {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 20%);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 0;
+        }
+
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .architecture-diagram {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .diagram-layer {
+            background: rgba(255, 255, 255, 0.8);
+            margin: 1rem 0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .header-content {
+                text-align: center;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-left: 40px;
+            }
+
+            .timeline-content {
+                width: 100%;
+                margin: 0;
+            }
+
+            .timeline-content::before {
+                left: -30px !important;
+                border-right-color: white !important;
+                border-left-color: transparent !important;
+            }
+
+            .timeline-marker {
+                left: 20px;
+                transform: none;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            border-left: 5px solid #667eea;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">VENDOR PORTAL</div>
+                <div class="header-info">
+                    <div><strong>Proposal Date:</strong> January 15, 2025</div>
+                    <div><strong>Valid Until:</strong> February 15, 2025</div>
+                    <div><strong>Ref:</strong> TFS-VCMP-2025-001</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Enterprise Vendor Claim Management Platform</h1>
+                <div class="hero-subtitle">Next-Generation SAP-Integrated Solution for Enterprise Claim Automation</div>
+                <div class="tech-badges">
+                    <span class="badge">🔗 SAP Native</span>
+                    <span class="badge">☁️ Cloud Ready</span>
+                    <span class="badge">🚀 Microservices</span>
+                    <span class="badge">📱 Mobile First</span>
+                    <span class="badge">📊 Advanced Analytics</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>🔗 SAP Integration & Data Flow</h2>
+            <p>Comprehensive integration architecture for seamless data synchronization and real-time processing</p>
+        </div>
+        <div class="section-content">
+            <div class="container">
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0;">
+                    <div
+                        style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); padding: 2rem; border-radius: 15px;">
+                        <h4>📊 Master Data Synchronization</h4>
+                        <ul style="margin-top: 1rem;">
+                            <li>• Customer Master (BP, Vendor details)</li>
+                            <li>• Material Master (Product information)</li>
+                            <li>• Pricing Conditions & Schemes</li>
+                            <li>• Organization Structure</li>
+                            <li>• Currency & Exchange Rates</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); padding: 2rem; border-radius: 15px;">
+                        <h4>💰 Transaction Data Integration</h4>
+                        <ul style="margin-top: 1rem;">
+                            <li>• Sales Orders & Invoices</li>
+                            <li>• Return Documents</li>
+                            <li>• Payment Information</li>
+                            <li>• Credit/Debit Notes</li>
+                            <li>• Financial Postings</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="background: linear-gradient(135deg, #667eea 20%, #764ba2 100%); color: white; padding: 2rem; border-radius: 15px;">
+                        <h4>⚙️ Integration Technologies</h4>
+                        <ul style="margin-top: 1rem;">
+                            <li>• SAP OData Services (REST)</li>
+                            <li>• RFC Function Modules</li>
+                            <li>• BAPI Integration</li>
+                            <li>• IDoc Processing</li>
+                            <li>• Real-time Event Handling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>📈 Advanced Reporting & Dashboard Features</h2>
+            <p>Comprehensive analytics and reporting capabilities for data-driven decision making</p>
+        </div>
+        <div class="section-content">
+            <div class="container">
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0;">
+                    <div class="benefit-card">
+                        <h4>📊 Executive Dashboards</h4>
+                        <p><strong>C-Level Overview:</strong> High-level KPIs, trend analysis, ROI metrics, and
+                            strategic insights with real-time updates and comparative analysis.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <h4>📋 Operational Reports</h4>
+                        <p><strong>Daily Operations:</strong> Claim processing status, pending approvals, exception
+                            handling, and workflow bottleneck identification.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <h4>🎯 Performance Analytics</h4>
+                        <p><strong>Scheme Effectiveness:</strong> Vendor performance tracking, scheme utilization rates,
+                            cost-benefit analysis, and optimization recommendations.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <h4>💼 Financial Reports</h4>
+                        <p><strong>Financial Control:</strong> Budget vs actual analysis, cost center reporting, vendor
+                            payables, and financial reconciliation reports.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <h4>📱 Mobile Dashboards</h4>
+                        <p><strong>On-the-go Access:</strong> Mobile-optimized dashboards for field teams, sales
+                            managers, and executives with offline data access.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <h4>🔧 Custom Report Builder</h4>
+                        <p><strong>Self-Service Analytics:</strong> Drag-and-drop report designer, custom filters,
+                            scheduled delivery, and automated distribution.</p>
+                    </div>
+                </div>
+
+                <div
+                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem; border-radius: 20px; margin: 3rem 0; text-align: center;">
+                    <h3 style="font-size: 2rem; margin-bottom: 2rem;">📊 50+ Pre-Built Reports Included</h3>
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; text-align: left;">
+                        <div>
+                            <h5>🎯 Claim Management Reports</h5>
+                            <p>• Claim Processing Summary<br>• Approval Workflow Status<br>• Exception & Error
+                                Reports<br>• Claim Aging Analysis</p>
+                        </div>
+                        <div>
+                            <h5>📈 Performance Reports</h5>
+                            <p>• Vendor Performance Metrics<br>• Scheme Utilization Analysis<br>• ROI & Cost-Benefit
+                                Reports<br>• Trend Analysis</p>
+                        </div>
+                        <div>
+                            <h5>💰 Financial Reports</h5>
+                            <p>• Payment Processing Reports<br>• Budget vs Actual Analysis<br>• Cost Center
+                                Allocation<br>• Audit Trail Reports</p>
+                        </div>
+                        <div>
+                            <h5>📊 Analytics & Insights</h5>
+                            <p>• Executive Summary Dashboard<br>• Operational KPI Reports<br>• Compliance Reports<br>•
+                                Custom Data Analysis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>🎯 Executive Summary</h2>
+            <p>Transforming vendor claim management through intelligent automation and predictive analytics</p>
+        </div>
+        <div class="section-content">
+            <div class="container">
+                <p style="font-size: 1.2rem; text-align: center; margin-bottom: 2rem;">
+                    Our <span class="highlight">Intelligent Vendor Claim Management Platform</span> revolutionizes
+                    traditional claim processing by combining advanced automation capabilities with modern cloud-native
+                    architecture. This solution delivers unprecedented workflow efficiency, comprehensive reporting, and
+                    real-time analytics while maintaining seamless integration with existing SAP systems.
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔗</div>
+                        <h3>Seamless SAP Integration</h3>
+                        <p>Native integration with SAP S/4HANA using OData services, BAPIs, and REST APIs. Real-time
+                            synchronization of master data, sales transactions, and claim processing.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Real-Time Processing</h3>
+                        <p>Event-driven architecture with real-time data streaming ensures instant claim updates and
+                            immediate stakeholder notifications across the organization.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Advanced Analytics Dashboard</h3>
+                        <p>Interactive dashboards with drill-down capabilities, KPI tracking, trend analysis, and
+                            comprehensive reporting for all stakeholder levels.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Workflow Automation</h3>
+                        <p>Automated claim processing workflows with configurable approval chains, validation rules, and
+                            exception handling to reduce manual effort by 90%.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Enterprise Security</h3>
+                        <p>Role-based access control, end-to-end encryption, multi-factor authentication, and
+                            comprehensive audit trails for compliance and security.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Multi-Platform Access</h3>
+                        <p>Responsive web portal, mobile applications, and API integrations ensuring accessibility
+                            across all devices and platforms.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>🏗️ Technical Architecture</h2>
+            <p>Cloud-native, microservices-based architecture designed for scale and resilience</p>
+        </div>
+        <div class="section-content">
+            <div class="container">
+                <div class="architecture-diagram">
+                    <h3 style="margin-bottom: 2rem;">Modern 4-Tier Architecture</h3>
+
+                    <div class="diagram-layer">
+                        <h4>🎨 Presentation Layer</h4>
+                        <p><strong>Progressive Web App (PWA)</strong> | React.js + TypeScript | Micro-frontends | Voice
+                            UI Integration</p>
+                    </div>
+
+                    <div class="diagram-layer">
+                        <h4>🔗 API Gateway & Orchestration</h4>
+                        <p><strong>Kong/AWS API Gateway</strong> | GraphQL Federation | Rate Limiting | Circuit Breaker
+                        </p>
+                    </div>
+
+                    <div class="diagram-layer">
+                        <h4>⚙️ Microservices Business Logic</h4>
+                        <p><strong>Node.js/Python FastAPI</strong> | Docker Containers | Kubernetes | Service Mesh
+                            (Istio)</p>
+                    </div>
+
+                    <div class="diagram-layer">
+                        <h4>🔗 SAP Integration Layer</h4>
+                        <p><strong>SAP S/4HANA Integration</strong> | OData Services | BAPIs | RFC Modules | Real-time
+                            Sync</p>
+                    </div>
+
+                    <div class="diagram-layer">
+                        <h4>📊 Business Intelligence & Reporting</h4>
+                        <p><strong>Analytics Engine</strong> | Power BI | Custom Reports | Dashboard Builder | Data
+                            Export</p>
+                    </div>
+                </div>
+
+                <div class="tech-stack">
+                    <div class="tech-category">
+                        <h4>🎯 Frontend Technologies</h4>
+                        <ul class="tech-list">
+                            <li>React 18 with Next.js 14</li>
+                            <li>TypeScript & GraphQL</li>
+                            <li>Progressive Web App (PWA)</li>
+                            <li>Micro-frontends Architecture</li>
+                            <li>Tailwind CSS + Framer Motion</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-category">
+                        <h4>⚡ Backend & APIs</h4>
+                        <ul class="tech-list">
+                            <li>Node.js 20 + Express/Fastify</li>
+                            <li>Python FastAPI for AI/ML</li>
+                            <li>GraphQL with Apollo Server</li>
+                            <li>Microservices with Docker</li>
+                            <li>Event-Driven Architecture</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-category">
+                        <h4>🔗 SAP Integration</h4>
+                        <ul class="tech-list">
+                            <li>SAP OData Services</li>
+                            <li>RFC Function Modules</li>
+                            <li>BAPI Integration</li>
+                            <li>Real-time Data Sync</li>
+                            <li>Custom Z-Tables</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-category">
+                        <h4>📊 Reporting & Analytics</h4>
+                        <ul class="tech-list">
+                            <li>Power BI Integration</li>
+                            <li>Custom Report Builder</li>
+                            <li>Real-time Dashboards</li>
+                            <li>Data Visualization</li>
+                            <li>Export Capabilities</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-category">
+                        <h4>🗄️ Data & Storage</h4>
+                        <ul class="tech-list">
+                            <li>PostgreSQL with TimescaleDB</li>
+                            <li>Redis for Caching</li>
+                            <li>Elasticsearch for Search</li>
+                            <li>Apache Kafka for Streaming</li>
+                            <li>Data Lake with Parquet</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-category">
+                        <h4>🔐 Security & Compliance</h4>
+                        <ul class="tech-list">
+                            <li>OAuth 2.0 + OIDC</li>
+                            <li>Zero Trust Architecture</li>
+                            <li>End-to-End Encryption</li>
+                            <li>RBAC with Attribute Control</li>
+                            <li>SOC 2 Type II Compliance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>🌟 Core Capabilities</h2>
+            <p>Advanced features focused on SAP integration, comprehensive reporting, and intuitive dashboards</p>
+        </div>
+        <div class="section-content">
+            <div class="container">
+                <div class="benefit-card">
+                    <h3>🔗 Native SAP Integration</h3>
+                    <p><strong>Seamless bi-directional integration</strong> with SAP S/4HANA for real-time data
+                        synchronization, master data management, and transaction processing without disrupting existing
+                        workflows.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>📊 Advanced Dashboard Suite</h3>
+                    <p><strong>Role-based interactive dashboards</strong> providing real-time visibility into claim
+                        status, performance metrics, vendor analytics, and operational KPIs with drill-down
+                        capabilities.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>📈 Comprehensive Reporting Engine</h3>
+                    <p><strong>Flexible report generation</strong> with 50+ pre-built reports, custom report builder,
+                        scheduled delivery, and export options in multiple formats (PDF, Excel, CSV).</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>⚡ Automated Workflow Processing</h3>
+                    <p><strong>Configurable business rules</strong> and approval workflows that automatically route
+                        claims, validate data, apply business logic, and trigger notifications based on defined
+                        criteria.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>🎯 Performance Analytics</h3>
+                    <p><strong>Comprehensive analytics suite</strong> tracking scheme effectiveness, vendor performance,
+                        claim trends, and ROI metrics with comparative analysis and benchmarking capabilities.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>📱 Multi-Device Accessibility</h3>
+                    <p><strong>Responsive design</strong> ensuring optimal user experience across desktop, tablet, and
+                        mobile devices with offline capabilities and synchronized data access.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>💰 Investment & ROI</h2>
+            <p>Transparent pricing with exceptional value and measurable returns</p>
+        </div>
+       
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>🚀 Implementation Timeline</h2>
+            <p>Agile delivery approach with early value realization</p>
+        </div>
+        <div class="section-content">
+            <div class="container">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Week 1-2: Discovery & Architecture</h4>
+                            <p>Stakeholder workshops, SAP system analysis, technical discovery, architecture design, and
+                                development environment setup with SAP connectivity validation.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Week 3-5: Core Development</h4>
+                            <p>SAP integration development, microservices architecture, database design, security
+                                implementation, and responsive frontend development with dashboard framework.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Week 6-8: Reporting & Dashboard Development</h4>
+                            <p>Advanced dashboard creation, report generation engine, analytics integration,
+                                comprehensive testing including SAP data validation and performance optimization.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Week 9-10: UAT & Optimization</h4>
+                            <p>User acceptance testing, performance tuning, security validation, and final optimizations
+                                based on stakeholder feedback.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Week 11-12: Deployment & Go-Live</h4>
+                            <p>Production deployment, data migration, user training, and go-live support with 24/7
+                                monitoring and immediate issue resolution.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>🏆 Competitive Advantages</h2>
+            <p>Why our solution leads the market in innovation and value</p>
+        </div>
+        <div class="section-content">
+            <div class="container">
+                <div class="comparison-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Traditional Solutions</th>
+                                <th>Our  Platform</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Processing Speed</strong></td>
+                                <td>Manual processing, 3-5 days</td>
+                                <td>🚀 Automated processing with real-time SAP sync</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Accuracy Rate</strong></td>
+                                <td>85-90% with human errors</td>
+                                <td>🎯 98% with automated validation rules</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SAP Integration</strong></td>
+                                <td>Manual data export/import</td>
+                                <td>🔗 Native real-time bi-directional integration</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Reporting Capabilities</strong></td>
+                                <td>Basic static reports</td>
+                                <td>📊 50+ dynamic reports with custom builder</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dashboard Features</strong></td>
+                                <td>Limited visualization</td>
+                                <td>📈 Interactive dashboards with drill-down analytics</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analytics</strong></td>
+                                <td>Basic reports</td>
+                                <td>📊 Predictive analytics with AI insights</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Integration</strong></td>
+                                <td>Point-to-point connections</td>
+                                <td>🔗 API-first with event-driven architecture</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2 style="font-size: 3rem; margin-bottom: 1rem;">Ready to Transform Your Claim Management?</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem;">Join leading enterprises who have revolutionized their
+                operations with our comprehensive SAP-integrated platform</p>
+            <div>
+                
+            </div>
+            <div style="margin-top: 3rem; font-size: 1.1rem;">
+                <div>📞 +91-9999-TECHFLOW | ✉️ solutions@techflow.ai</div>
+                <div>🌐 www.techflow.ai | 📍 Bangalore | Mumbai | Delhi</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h4></h4>
+                    <p>Leading digital transformation partner specializing in SAP-integrated enterprise solutions and
+                        advanced analytics platforms.</p>
+                </div>
+                <div>
+                    <h4>Certifications</h4>
+                    <p>ISO 27001 | SOC 2 Type II<br>AWS Advanced Partner<br>Microsoft Gold Partner</p>
+                </div>
+                <div>
+                    <h4>Industries Served</h4>
+                    <p>Manufacturing | Distribution<br>Retail | Healthcare<br>Financial Services</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #333; padding-top: 2rem; text-align: center;">
+                <p>&copy; 2025 . All rights reserved. | This proposal is confidential and proprietary.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for scroll animations
+        document.querySelectorAll('.section, .feature-card, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add click handlers for CTA buttons
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Add analytics tracking here
+                console.log('CTA clicked:', this.textContent);
+                // You could integrate with your analytics or contact form here
+            });
+        });
+    </script>
+</body>
+
+</html>
